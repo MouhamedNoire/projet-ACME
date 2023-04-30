@@ -1,15 +1,33 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {IProducts} from "../products";
 
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
-export class ProductListComponent {
-  pageTitle : string = "Product List";
+export class ProductListComponent implements OnInit {
 
+
+  pageTitle : string = "Product List";
+  imageWidth : number = 50;
+  imageMargin : number = 2;
+
+  showImage : boolean = false;
+private _listFilter: string ='';
+
+get listFilter(): string{
+  return this._listFilter;
+}
+set listFilter(value: string){
+  this._listFilter = value;
+  console.log('in Setter: ' , this._listFilter);
+  this.filteredProducts = this.performFilter(this._listFilter)
+
+}
+filteredProducts : IProducts[] =[];
   // @ts-ignore
-  products : any[] =[
+  products : IProducts [] =[
       {
         "productId": 1,
         "productName": "Leaf Rake",
@@ -61,5 +79,24 @@ export class ProductListComponent {
         "imageUrl": "assets/images/xbox-controller.png"
       }
   ];
+
+  toggleImage() :void{
+    this.showImage = !this.showImage;
+  }
+
+  performFilter(filterBy: string): IProducts[]{
+    filterBy = filterBy.toLocaleLowerCase();
+    return this.products.filter((product:IProducts) =>
+      product.productName
+        .toLocaleLowerCase()
+        .includes(filterBy)
+    );
+  }
+  onRatingClicked(message:string):void{
+    this.pageTitle = 'Product List: ' + message;
+  }
+  ngOnInit() : void {
+    this.listFilter ='';
+  }
 
 }
