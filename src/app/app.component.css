@@ -1,0 +1,6 @@
+li >a {
+  border: 1px solid blue;
+  margin: 10px;
+ text-decoration: none;
+  cursor: pointer;
+}
