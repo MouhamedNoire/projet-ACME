@@ -5,19 +5,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductListComponent } from './products/product-list/product-list.component';
 import {FormsModule} from "@angular/forms";
-import {convertToSpacesPipe} from "./shared/convert-to-spaces-pipe";
+import {ConvertToSpacesPipe} from "./shared/Convert-to-spaces-pipe";
 import {StarComponent} from "./shared/star.component";
 import{HttpClientModule} from "@angular/common/http";
 import { WelcomeComponent } from './Home/welcome/welcome.component';
 import { ProductDetailComponent } from './products/product-detail/product-detail.component';
 import {RouterModule} from "@angular/router";
 import {ProductDetailGuard} from "./products/product-detail.guard";
+//import { ProductModule } from './products/product.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductListComponent,
-    convertToSpacesPipe,
+    ConvertToSpacesPipe,
     StarComponent,
     WelcomeComponent,
     ProductDetailComponent
